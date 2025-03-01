@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.memije.pokedex"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -69,6 +69,10 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":core"))
+    implementation(project(":PokedexGeneric"))
+    implementation(project(":pokemonlist"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

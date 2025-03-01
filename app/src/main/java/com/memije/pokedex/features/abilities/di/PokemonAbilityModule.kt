@@ -1,6 +1,6 @@
 package com.memije.pokedex.features.abilities.di
 
-import com.memije.pokedex.core.network.ApiService
+import com.memije.core.network.ApiService
 import com.memije.pokedex.features.abilities.data.repository.PokemonAbilityRepositoryImpl
 import com.memije.pokedex.features.abilities.domain.repository.PokemonAbilityRepository
 import com.memije.pokedex.features.abilities.domain.usecase.GetPokemonAbilityUseCase

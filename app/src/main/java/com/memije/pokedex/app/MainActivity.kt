@@ -6,10 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
 import com.memije.pokedex.app.navigation.NavigationGraph
-import com.memije.pokedex.core.theme.PokeAppTheme
 import com.memije.pokedex.features.abilities.presentation.viewmodel.PokemonAbilityViewModel
 import com.memije.pokedex.features.details.presentation.viewmodel.PokemonDetailViewModel
-import com.memije.pokedex.features.pokemons.presentation.viewmodel.PokemonListViewModel
+import com.memije.pokedexgeneric.theme.PokeAppTheme
+import com.memije.pokemonlist.presentation.viewmodel.PokemonListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

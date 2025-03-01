@@ -8,8 +8,8 @@ import com.memije.pokedex.features.abilities.presentation.ui.PokemonAbilities
 import com.memije.pokedex.features.abilities.presentation.viewmodel.PokemonAbilityViewModel
 import com.memije.pokedex.features.details.presentation.ui.PokemonDetail
 import com.memije.pokedex.features.details.presentation.viewmodel.PokemonDetailViewModel
-import com.memije.pokedex.features.pokemons.presentation.ui.PokemonList
-import com.memije.pokedex.features.pokemons.presentation.viewmodel.PokemonListViewModel
+import com.memije.pokemonlist.presentation.ui.PokemonList
+import com.memije.pokemonlist.presentation.viewmodel.PokemonListViewModel
 
 @Composable
 fun NavigationGraph(

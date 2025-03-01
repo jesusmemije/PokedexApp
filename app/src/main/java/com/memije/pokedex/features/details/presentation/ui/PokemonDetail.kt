@@ -19,11 +19,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.memije.pokedex.core.components.ErrorState
-import com.memije.pokedex.core.components.LoadingState
-import com.memije.pokedex.core.utils.Response
 import com.memije.pokedex.features.details.domain.model.PokemonDetail
 import com.memije.pokedex.features.details.presentation.viewmodel.PokemonDetailViewModel
+import com.memije.pokedexgeneric.components.ErrorState
+import com.memije.pokedexgeneric.components.LoadingState
+import com.memije.pokedexgeneric.utils.Response
 import java.util.Locale
 
 @Composable

@@ -36,11 +36,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.memije.pokedex.core.components.ErrorState
-import com.memije.pokedex.core.components.LoadingState
-import com.memije.pokedex.core.utils.Response
 import com.memije.pokedex.features.abilities.domain.model.Ability
 import com.memije.pokedex.features.abilities.presentation.viewmodel.PokemonAbilityViewModel
+import com.memije.pokedexgeneric.components.ErrorState
+import com.memije.pokedexgeneric.components.LoadingState
+import com.memije.pokedexgeneric.utils.Response
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
