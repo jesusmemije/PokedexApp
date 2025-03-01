@@ -1,5 +1,6 @@
 package com.memije.pokedex.app.di
 
+import com.memije.pokedex.BuildConfig
 import com.memije.pokedex.core.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -35,7 +36,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
+            .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
