@@ -27,19 +27,19 @@ import com.memije.pokedex.features.details.presentation.viewmodel.PokemonDetailV
 import java.util.Locale
 
 @Composable
-fun PokemonDetailScreen(viewModel: PokemonDetailViewModel, pokemonName: String, navController: NavHostController) {
+fun PokemonDetail(viewModel: PokemonDetailViewModel, pokemonName: String, navController: NavHostController) {
 
     val pokemonDetail by viewModel.pokemonDetail.collectAsState()
 
     LaunchedEffect(pokemonName) {
-        viewModel.fetchPokemonDetail(pokemonName)
+        viewModel.getPokemonDetail(pokemonName)
     }
 
     when (pokemonDetail) {
         is Response.Loading -> LoadingState()
         is Response.Success -> DetailContent((pokemonDetail as Response.Success<PokemonDetail>).data, navController)
         is Response.Error -> ErrorState(message = (pokemonDetail as Response.Error).message) {
-            viewModel.fetchPokemonDetail(pokemonName)
+            viewModel.getPokemonDetail(pokemonName)
         }
     }
 }
@@ -68,7 +68,7 @@ fun DetailContent(pokemon: PokemonDetail, navController: NavHostController) {
             Text(
                 text = ability,
                 modifier = Modifier
-                    .clickable { navController.navigate("abilityDetail/${ability}") }
+                    .clickable { navController.navigate("pokemonAbility/${ability}") }
                     .padding(8.dp)
             )
         }

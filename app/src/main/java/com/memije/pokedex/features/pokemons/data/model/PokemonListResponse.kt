@@ -1,8 +1,8 @@
-package com.memije.pokedex.features.pokemonlist.data.model
+package com.memije.pokedex.features.pokemons.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class PokemonResponse(
+data class PokemonListResponse(
     @SerializedName("results") val results: List<PokemonDto>
 )
 

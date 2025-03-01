@@ -6,12 +6,29 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -23,19 +40,19 @@ import com.memije.pokedex.core.components.ErrorState
 import com.memije.pokedex.core.components.LoadingState
 import com.memije.pokedex.core.utils.Response
 import com.memije.pokedex.features.abilities.domain.model.Ability
-import com.memije.pokedex.features.abilities.presentation.viewmodel.AbilityViewModel
+import com.memije.pokedex.features.abilities.presentation.viewmodel.PokemonAbilityViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AbilityScreen(
-    viewModel: AbilityViewModel,
+fun PokemonAbilities(
+    viewModel: PokemonAbilityViewModel,
     abilityName: String,
     navController: NavHostController
 ) {
-    val abilityDetail by viewModel.abilityDetail.collectAsState()
+    val pokemonAbility by viewModel.pokemonAbility.collectAsState()
 
     LaunchedEffect(abilityName) {
-        viewModel.fetchAbilityDetail(abilityName)
+        viewModel.getPokemonAbility(abilityName)
     }
 
     Scaffold(
@@ -44,7 +61,7 @@ fun AbilityScreen(
                 title = { Text(text = abilityName, fontSize = 20.sp, fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Volver")
+                        Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver")
                     }
                 }
             )
@@ -56,7 +73,7 @@ fun AbilityScreen(
                 .padding(padding)
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            when (abilityDetail) {
+            when (pokemonAbility) {
                 is Response.Loading -> LoadingState()
                 is Response.Success -> {
                     AnimatedVisibility(
@@ -64,12 +81,12 @@ fun AbilityScreen(
                         enter = fadeIn(animationSpec = tween(700)) + expandVertically(),
                         exit = fadeOut(animationSpec = tween(500))
                     ) {
-                        AbilityContent((abilityDetail as? Response.Success<Ability>)?.data ?: Ability(0,"", ""))
+                        AbilityContent((pokemonAbility as? Response.Success<Ability>)?.data ?: Ability(0,"", ""))
                     }
                 }
                 is Response.Error -> ErrorState(
-                    message = (abilityDetail as Response.Error).message
-                ) { viewModel.fetchAbilityDetail(abilityName) }
+                    message = (pokemonAbility as Response.Error).message
+                ) { viewModel.getPokemonAbility(abilityName) }
             }
         }
     }

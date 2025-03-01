@@ -1,7 +1,7 @@
-package com.memije.pokedex.features.pokemonlist.data.mapper
+package com.memije.pokedex.features.pokemons.data.mapper
 
-import com.memije.pokedex.features.pokemonlist.data.model.PokemonDto
-import com.memije.pokedex.features.pokemonlist.domain.model.Pokemon
+import com.memije.pokedex.features.pokemons.data.model.PokemonDto
+import com.memije.pokedex.features.pokemons.domain.model.Pokemon
 
 fun PokemonDto.toDomain(): Pokemon {
     val id = url.split("/").dropLast(1).lastOrNull()

@@ -1,9 +1,9 @@
 package com.memije.pokedex.features.abilities.data.mapper
 
-import com.memije.pokedex.features.abilities.data.model.AbilityResponse
+import com.memije.pokedex.features.abilities.data.model.PokemonAbilityResponse
 import com.memije.pokedex.features.abilities.domain.model.Ability
 
-fun AbilityResponse.toDomain(): Ability {
+fun PokemonAbilityResponse.toDomain(): Ability {
     return Ability(
         id = id,
         name = name,

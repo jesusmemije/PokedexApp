@@ -1,4 +1,4 @@
-package com.memije.pokedex.features.pokemonlist.presentation.ui
+package com.memije.pokedex.features.pokemons.presentation.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -31,11 +31,11 @@ import com.memije.pokedex.R
 import com.memije.pokedex.core.components.ErrorState
 import com.memije.pokedex.core.components.LoadingState
 import com.memije.pokedex.core.utils.Response
-import com.memije.pokedex.features.pokemonlist.domain.model.Pokemon
-import com.memije.pokedex.features.pokemonlist.presentation.viewmodel.PokemonViewModel
+import com.memije.pokedex.features.pokemons.domain.model.Pokemon
+import com.memije.pokedex.features.pokemons.presentation.viewmodel.PokemonListViewModel
 
 @Composable
-fun PokemonScreen(viewModel: PokemonViewModel, navController: NavHostController) {
+fun PokemonList(viewModel: PokemonListViewModel, navController: NavHostController) {
 
     val pokemonList by viewModel.pokemonList.collectAsState()
 
@@ -46,7 +46,7 @@ fun PokemonScreen(viewModel: PokemonViewModel, navController: NavHostController)
             navController
         )
         is Response.Error -> ErrorState(message = (pokemonList as Response.Error).message) {
-            viewModel.fetchPokemon()
+            viewModel.getPokemonList()
         }
     }
 }

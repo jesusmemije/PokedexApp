@@ -5,16 +5,16 @@ import com.memije.pokedex.core.network.ApiService
 import com.memije.pokedex.core.utils.Response
 import com.memije.pokedex.features.abilities.data.mapper.toDomain
 import com.memije.pokedex.features.abilities.domain.model.Ability
-import com.memije.pokedex.features.abilities.domain.repository.AbilityRepository
+import com.memije.pokedex.features.abilities.domain.repository.PokemonAbilityRepository
 import javax.inject.Inject
 
-class AbilityRepositoryImpl @Inject constructor(
+class PokemonAbilityRepositoryImpl @Inject constructor(
     private val apiService: ApiService
-) : AbilityRepository {
+) : PokemonAbilityRepository {
 
-    override suspend fun getAbilityDetail(name: String): Response<Ability> {
+    override suspend fun getPokemonAbility(name: String): Response<Ability> {
         return try {
-            val response = apiService.getAbilityDetail(name)
+            val response = apiService.getPokemonAbility(name)
 
             // DEBUG: Imprimir las traducciones disponibles
             response.effectEntries.forEach { entry ->
