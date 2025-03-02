@@ -4,7 +4,7 @@ import com.memije.core.network.ApiService
 import com.memije.pokedex.features.details.data.mapper.toDomain
 import com.memije.pokedex.features.details.domain.model.PokemonDetail
 import com.memije.pokedex.features.details.domain.repository.PokemonDetailRepository
-import com.memije.pokedexgeneric.utils.Response
+import com.memije.core.network.model.Response
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

@@ -1,4 +1,4 @@
-package com.memije.core.response
+package com.memije.core.network.response
 
 import com.google.gson.annotations.SerializedName
 

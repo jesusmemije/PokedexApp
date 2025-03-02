@@ -1,6 +1,6 @@
 package com.memije.pokemonlist.domain.repository
 
-import com.memije.pokedexgeneric.utils.Response
+import com.memije.core.network.model.Response
 import com.memije.pokemonlist.domain.model.Pokemon
 
 interface PokemonListRepository {

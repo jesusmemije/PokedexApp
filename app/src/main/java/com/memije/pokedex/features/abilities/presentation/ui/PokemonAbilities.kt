@@ -38,9 +38,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.memije.pokedex.features.abilities.domain.model.Ability
 import com.memije.pokedex.features.abilities.presentation.viewmodel.PokemonAbilityViewModel
-import com.memije.pokedexgeneric.components.ErrorState
-import com.memije.pokedexgeneric.components.LoadingState
-import com.memije.pokedexgeneric.utils.Response
+import com.memije.core.components.ErrorState
+import com.memije.core.components.LoadingState
+import com.memije.core.network.model.Response
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

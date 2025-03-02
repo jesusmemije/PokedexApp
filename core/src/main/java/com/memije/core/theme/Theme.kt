@@ -1,4 +1,4 @@
-package com.memije.pokedexgeneric.theme
+package com.memije.core.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography

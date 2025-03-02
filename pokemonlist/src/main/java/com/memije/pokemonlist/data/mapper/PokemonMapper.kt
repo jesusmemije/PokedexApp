@@ -1,6 +1,6 @@
 package com.memije.pokemonlist.data.mapper
 
-import com.memije.core.response.PokemonDto
+import com.memije.core.network.response.PokemonDto
 import com.memije.pokemonlist.domain.model.Pokemon
 
 fun PokemonDto.toDomain(): Pokemon {

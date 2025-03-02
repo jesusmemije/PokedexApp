@@ -1,4 +1,4 @@
-package com.memije.pokedexgeneric.theme
+package com.memije.core.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.memije.pokedex.features.details.domain.model.PokemonDetail
 import com.memije.pokedex.features.details.domain.usecase.GetPokemonDetailUseCase
-import com.memije.pokedexgeneric.utils.Response
+import com.memije.core.network.model.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

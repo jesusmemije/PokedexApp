@@ -27,9 +27,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.memije.pokedexgeneric.components.ErrorState
-import com.memije.pokedexgeneric.components.LoadingState
-import com.memije.pokedexgeneric.utils.Response
+import com.memije.core.components.ErrorState
+import com.memije.core.components.LoadingState
+import com.memije.core.network.model.Response
 import com.memije.pokemonlist.R
 import com.memije.pokemonlist.domain.model.Pokemon
 import com.memije.pokemonlist.presentation.viewmodel.PokemonListViewModel

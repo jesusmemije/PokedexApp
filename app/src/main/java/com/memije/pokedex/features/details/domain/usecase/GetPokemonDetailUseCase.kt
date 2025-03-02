@@ -2,7 +2,7 @@ package com.memije.pokedex.features.details.domain.usecase
 
 import com.memije.pokedex.features.details.domain.model.PokemonDetail
 import com.memije.pokedex.features.details.domain.repository.PokemonDetailRepository
-import com.memije.pokedexgeneric.utils.Response
+import com.memije.core.network.model.Response
 import javax.inject.Inject
 
 class GetPokemonDetailUseCase @Inject constructor(

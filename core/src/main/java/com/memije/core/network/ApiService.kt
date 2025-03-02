@@ -1,8 +1,8 @@
 package com.memije.core.network
 
-import com.memije.core.response.PokemonListResponse
-import com.memije.core.response.PokemonDetailResponse
-import com.memije.core.response.PokemonAbilityResponse
+import com.memije.core.network.response.PokemonListResponse
+import com.memije.core.network.response.PokemonDetailResponse
+import com.memije.core.network.response.PokemonAbilityResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

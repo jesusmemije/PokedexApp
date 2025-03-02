@@ -1,7 +1,7 @@
 package com.memije.pokemonlist.data.repository
 
 import com.memije.core.network.ApiService
-import com.memije.pokedexgeneric.utils.Response
+import com.memije.core.network.model.Response
 import com.memije.pokemonlist.data.mapper.toDomain
 import com.memije.pokemonlist.domain.model.Pokemon
 import com.memije.pokemonlist.domain.repository.PokemonListRepository

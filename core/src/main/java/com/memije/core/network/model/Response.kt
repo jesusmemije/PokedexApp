@@ -1,4 +1,4 @@
-package com.memije.pokedexgeneric.utils
+package com.memije.core.network.model
 
 sealed class Response<out T> {
     data class Success<T>(val data: T) : Response<T>()
