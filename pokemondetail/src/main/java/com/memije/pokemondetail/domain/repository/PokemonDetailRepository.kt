@@ -1,6 +1,6 @@
-package com.memije.pokedex.features.details.domain.repository
+package com.memije.pokemondetail.domain.repository
 
-import com.memije.pokedex.features.details.domain.model.PokemonDetail
+import com.memije.pokemondetail.domain.model.PokemonDetail
 import com.memije.core.network.model.Response
 
 interface PokemonDetailRepository {

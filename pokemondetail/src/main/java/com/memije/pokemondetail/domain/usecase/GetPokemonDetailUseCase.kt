@@ -1,7 +1,7 @@
-package com.memije.pokedex.features.details.domain.usecase
+package com.memije.pokemondetail.domain.usecase
 
-import com.memije.pokedex.features.details.domain.model.PokemonDetail
-import com.memije.pokedex.features.details.domain.repository.PokemonDetailRepository
+import com.memije.pokemondetail.domain.model.PokemonDetail
+import com.memije.pokemondetail.domain.repository.PokemonDetailRepository
 import com.memije.core.network.model.Response
 import javax.inject.Inject
 

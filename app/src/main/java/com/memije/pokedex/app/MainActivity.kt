@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
 import com.memije.pokedex.app.navigation.NavigationGraph
 import com.memije.pokedex.features.abilities.presentation.viewmodel.PokemonAbilityViewModel
-import com.memije.pokedex.features.details.presentation.viewmodel.PokemonDetailViewModel
+import com.memije.pokemondetail.presentation.viewmodel.PokemonDetailViewModel
 import com.memije.core.theme.PokeAppTheme
 import com.memije.pokemonlist.presentation.viewmodel.PokemonListViewModel
 import dagger.hilt.android.AndroidEntryPoint

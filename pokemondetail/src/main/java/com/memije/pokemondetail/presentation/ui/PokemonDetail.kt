@@ -1,4 +1,4 @@
-package com.memije.pokedex.features.details.presentation.ui
+package com.memije.pokemondetail.presentation.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -19,8 +19,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.memije.pokedex.features.details.domain.model.PokemonDetail
-import com.memije.pokedex.features.details.presentation.viewmodel.PokemonDetailViewModel
+import com.memije.pokemondetail.domain.model.PokemonDetail
+import com.memije.pokemondetail.presentation.viewmodel.PokemonDetailViewModel
 import com.memije.core.components.ErrorState
 import com.memije.core.components.LoadingState
 import com.memije.core.network.model.Response
@@ -45,7 +45,7 @@ fun PokemonDetail(viewModel: PokemonDetailViewModel, pokemonName: String, navCon
 }
 
 @Composable
-fun DetailContent(pokemon: PokemonDetail, navController: NavHostController) {
+fun DetailContent(pokemon: com.memije.pokemondetail.domain.model.PokemonDetail, navController: NavHostController) {
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Image(
             painter = rememberAsyncImagePainter(pokemon.imageUrl),

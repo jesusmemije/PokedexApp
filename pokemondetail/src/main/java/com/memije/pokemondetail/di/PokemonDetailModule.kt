@@ -1,9 +1,8 @@
-package com.memije.pokedex.features.details.di
+package com.memije.pokemondetail.di
 
 import com.memije.core.network.ApiService
-import com.memije.pokedex.features.details.data.repository.PokemonDetailRepositoryImpl
-import com.memije.pokedex.features.details.domain.repository.PokemonDetailRepository
-import com.memije.pokedex.features.details.domain.usecase.GetPokemonDetailUseCase
+import com.memije.pokemondetail.domain.repository.PokemonDetailRepository
+import com.memije.pokemondetail.domain.usecase.GetPokemonDetailUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +14,7 @@ object PokemonDetailModule {
 
     @Provides
     fun providePokemonDetailRepository(apiService: ApiService): PokemonDetailRepository {
-        return PokemonDetailRepositoryImpl(apiService)
+        return com.memije.pokemondetail.data.repository.PokemonDetailRepositoryImpl(apiService)
     }
 
     @Provides

@@ -1,7 +1,7 @@
-package com.memije.pokedex.features.details.data.mapper
+package com.memije.pokemondetail.data.mapper
 
 import com.memije.core.network.response.PokemonDetailResponse
-import com.memije.pokedex.features.details.domain.model.PokemonDetail
+import com.memije.pokemondetail.domain.model.PokemonDetail
 
 fun PokemonDetailResponse.toDomain(): PokemonDetail {
     return PokemonDetail(

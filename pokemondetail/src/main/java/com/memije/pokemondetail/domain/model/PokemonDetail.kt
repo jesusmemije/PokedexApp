@@ -1,4 +1,4 @@
-package com.memije.pokedex.features.details.domain.model
+package com.memije.pokemondetail.domain.model
 
 data class PokemonDetail(
     val id: Int,

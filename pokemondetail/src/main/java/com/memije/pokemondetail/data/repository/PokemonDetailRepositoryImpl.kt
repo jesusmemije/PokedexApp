@@ -1,10 +1,10 @@
-package com.memije.pokedex.features.details.data.repository
+package com.memije.pokemondetail.data.repository
 
 import com.memije.core.network.ApiService
-import com.memije.pokedex.features.details.data.mapper.toDomain
-import com.memije.pokedex.features.details.domain.model.PokemonDetail
-import com.memije.pokedex.features.details.domain.repository.PokemonDetailRepository
 import com.memije.core.network.model.Response
+import com.memije.pokemondetail.data.mapper.toDomain
+import com.memije.pokemondetail.domain.model.PokemonDetail
+import com.memije.pokemondetail.domain.repository.PokemonDetailRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
