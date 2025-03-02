@@ -1,9 +1,9 @@
-package com.memije.pokedex.features.abilities.di
+package com.memije.pokemonskills.di
 
 import com.memije.core.network.ApiService
-import com.memije.pokedex.features.abilities.data.repository.PokemonAbilityRepositoryImpl
-import com.memije.pokedex.features.abilities.domain.repository.PokemonAbilityRepository
-import com.memije.pokedex.features.abilities.domain.usecase.GetPokemonAbilityUseCase
+import com.memije.pokemonskills.data.repository.PokemonAbilityRepositoryImpl
+import com.memije.pokemonskills.domain.repository.PokemonAbilityRepository
+import com.memije.pokemonskills.domain.usecase.GetPokemonAbilityUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

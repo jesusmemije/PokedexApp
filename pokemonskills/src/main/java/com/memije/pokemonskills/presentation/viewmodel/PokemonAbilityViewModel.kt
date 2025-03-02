@@ -1,9 +1,9 @@
-package com.memije.pokedex.features.abilities.presentation.viewmodel
+package com.memije.pokemonskills.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.memije.pokedex.features.abilities.domain.model.Ability
-import com.memije.pokedex.features.abilities.domain.usecase.GetPokemonAbilityUseCase
+import com.memije.pokemonskills.domain.model.Ability
+import com.memije.pokemonskills.domain.usecase.GetPokemonAbilityUseCase
 import com.memije.core.network.model.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

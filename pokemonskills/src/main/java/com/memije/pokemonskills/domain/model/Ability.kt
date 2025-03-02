@@ -1,4 +1,4 @@
-package com.memije.pokedex.features.abilities.domain.model
+package com.memije.pokemonskills.domain.model
 
 data class Ability(
     val id: Int,

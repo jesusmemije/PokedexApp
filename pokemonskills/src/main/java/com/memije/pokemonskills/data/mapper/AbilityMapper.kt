@@ -1,7 +1,7 @@
-package com.memije.pokedex.features.abilities.data.mapper
+package com.memije.pokemonskills.data.mapper
 
 import com.memije.core.network.response.PokemonAbilityResponse
-import com.memije.pokedex.features.abilities.domain.model.Ability
+import com.memije.pokemonskills.domain.model.Ability
 
 fun PokemonAbilityResponse.toDomain(): Ability {
     return Ability(

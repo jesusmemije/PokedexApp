@@ -1,4 +1,4 @@
-package com.memije.pokedex.features.abilities.presentation.ui
+package com.memije.pokemonskills.presentation.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -36,8 +36,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.memije.pokedex.features.abilities.domain.model.Ability
-import com.memije.pokedex.features.abilities.presentation.viewmodel.PokemonAbilityViewModel
+import com.memije.pokemonskills.domain.model.Ability
+import com.memije.pokemonskills.presentation.viewmodel.PokemonAbilityViewModel
 import com.memije.core.components.ErrorState
 import com.memije.core.components.LoadingState
 import com.memije.core.network.model.Response
@@ -81,7 +81,12 @@ fun PokemonAbilities(
                         enter = fadeIn(animationSpec = tween(700)) + expandVertically(),
                         exit = fadeOut(animationSpec = tween(500))
                     ) {
-                        AbilityContent((pokemonAbility as? Response.Success<Ability>)?.data ?: Ability(0,"", ""))
+                        AbilityContent((pokemonAbility as? Response.Success<Ability>)?.data ?: Ability(
+                            0,
+                            "",
+                            ""
+                        )
+                        )
                     }
                 }
                 is Response.Error -> ErrorState(

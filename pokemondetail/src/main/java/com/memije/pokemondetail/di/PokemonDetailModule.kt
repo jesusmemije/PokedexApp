@@ -1,6 +1,7 @@
 package com.memije.pokemondetail.di
 
 import com.memije.core.network.ApiService
+import com.memije.pokemondetail.data.repository.PokemonDetailRepositoryImpl
 import com.memije.pokemondetail.domain.repository.PokemonDetailRepository
 import com.memije.pokemondetail.domain.usecase.GetPokemonDetailUseCase
 import dagger.Module
@@ -14,7 +15,7 @@ object PokemonDetailModule {
 
     @Provides
     fun providePokemonDetailRepository(apiService: ApiService): PokemonDetailRepository {
-        return com.memije.pokemondetail.data.repository.PokemonDetailRepositoryImpl(apiService)
+        return PokemonDetailRepositoryImpl(apiService)
     }
 
     @Provides

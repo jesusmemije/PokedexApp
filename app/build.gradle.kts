@@ -73,6 +73,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":pokemonlist"))
     implementation(project(":pokemondetail"))
+    implementation(project(":pokemonskills"))
 
     // Dagger Hilt
     implementation(libs.androidx.hilt.navigation.compose)

@@ -1,6 +1,6 @@
-package com.memije.pokedex.features.abilities.domain.usecase
+package com.memije.pokemonskills.domain.usecase
 
-import com.memije.pokedex.features.abilities.domain.repository.PokemonAbilityRepository
+import com.memije.pokemonskills.domain.repository.PokemonAbilityRepository
 import javax.inject.Inject
 
 class GetPokemonAbilityUseCase @Inject constructor(
