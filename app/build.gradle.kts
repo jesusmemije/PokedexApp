@@ -71,7 +71,7 @@ android {
 dependencies {
 
     implementation(project(":core"))
-    implementation(project(":PokedexGeneric"))
+    implementation(project(":pokedexgeneric"))
     implementation(project(":pokemonlist"))
 
     implementation(libs.androidx.core.ktx)

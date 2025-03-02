@@ -40,7 +40,7 @@ android {
 
 dependencies {
 
-    implementation(project(":PokedexGeneric"))
+    implementation(project(":pokedexgeneric"))
     implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)
