@@ -1,11 +1,11 @@
-package com.memije.pokemonskills.data.repository
+package com.memije.pokemonability.data.repository
 
 import android.util.Log
 import com.memije.core.network.ApiService
 import com.memije.core.network.model.Response
-import com.memije.pokemonskills.data.mapper.toDomain
-import com.memije.pokemonskills.domain.model.Ability
-import com.memije.pokemonskills.domain.repository.PokemonAbilityRepository
+import com.memije.pokemonability.data.mapper.toDomain
+import com.memije.pokemonability.domain.model.Ability
+import com.memije.pokemonability.domain.repository.PokemonAbilityRepository
 import javax.inject.Inject
 
 class PokemonAbilityRepositoryImpl @Inject constructor(

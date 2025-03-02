@@ -12,9 +12,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/pokemonability" />
             <option value="$PROJECT_DIR$/pokemondetail" />
             <option value="$PROJECT_DIR$/pokemonlist" />
-            <option value="$PROJECT_DIR$/pokemonskills" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

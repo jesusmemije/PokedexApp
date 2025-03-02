@@ -85,7 +85,7 @@ fun GridItemCard(pokemon: Pokemon, navController: NavController) {
         Row(
             modifier = Modifier
                 .padding(8.dp)
-                .clickable { navController.navigate(Routes.PokemonDetail.createRoute(pokemon.name)) }
+                .clickable { navController.navigate(Routes.Details.createRoute(pokemon.name)) }
         ) {
             Column {
                 Text(text = pokemon.name)

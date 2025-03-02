@@ -1,4 +1,4 @@
-package com.memije.pokemonskills.presentation.ui
+package com.memije.pokemonability.presentation.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -36,15 +36,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.memije.pokemonskills.domain.model.Ability
-import com.memije.pokemonskills.presentation.viewmodel.PokemonAbilityViewModel
+import com.memije.pokemonability.domain.model.Ability
+import com.memije.pokemonability.presentation.viewmodel.PokemonAbilityViewModel
 import com.memije.core.components.ErrorState
 import com.memije.core.components.LoadingState
 import com.memije.core.network.model.Response
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokemonAbilities(
+fun PokemonAbility(
     viewModel: PokemonAbilityViewModel,
     abilityName: String,
     navController: NavHostController

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.memije.pokemonskills"
+    namespace = "com.memije.pokemonability"
     compileSdk = 35
 
     defaultConfig {

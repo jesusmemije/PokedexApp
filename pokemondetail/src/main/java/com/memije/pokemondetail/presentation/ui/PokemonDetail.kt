@@ -69,7 +69,7 @@ fun DetailContent(pokemon: PokemonDetail, navController: NavHostController) {
             Text(
                 text = ability,
                 modifier = Modifier
-                    .clickable { navController.navigate(Routes.AbilityDetail.createRoute(ability)) }
+                    .clickable { navController.navigate(Routes.Ability.createRoute(ability)) }
                     .padding(8.dp)
             )
         }
