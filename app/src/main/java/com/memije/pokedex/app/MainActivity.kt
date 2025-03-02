@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.memije.pokedex.app.navigation.NavigationGraph
 import com.memije.pokemonskills.presentation.viewmodel.PokemonAbilityViewModel
 import com.memije.pokemondetail.presentation.viewmodel.PokemonDetailViewModel
-import com.memije.core.theme.PokeAppTheme
+import com.memije.core.theme.PokedexAppTheme
 import com.memije.pokemonlist.presentation.viewmodel.PokemonListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PokeAppTheme {
+            PokedexAppTheme {
                 val navController = rememberNavController()
                 NavigationGraph(
                     navController = navController,

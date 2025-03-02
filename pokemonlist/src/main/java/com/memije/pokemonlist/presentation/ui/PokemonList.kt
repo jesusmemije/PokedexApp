@@ -30,6 +30,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.memije.core.components.ErrorState
 import com.memije.core.components.LoadingState
 import com.memije.core.network.model.Response
+import com.memije.core.utils.Routes
 import com.memije.pokemonlist.R
 import com.memije.pokemonlist.domain.model.Pokemon
 import com.memije.pokemonlist.presentation.viewmodel.PokemonListViewModel
@@ -84,7 +85,7 @@ fun GridItemCard(pokemon: Pokemon, navController: NavController) {
         Row(
             modifier = Modifier
                 .padding(8.dp)
-                .clickable { navController.navigate("pokemonDetail/${pokemon.name}") }
+                .clickable { navController.navigate(Routes.PokemonDetail.createRoute(pokemon.name)) }
         ) {
             Column {
                 Text(text = pokemon.name)

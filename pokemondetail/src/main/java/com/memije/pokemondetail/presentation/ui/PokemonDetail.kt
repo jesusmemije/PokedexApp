@@ -24,6 +24,7 @@ import com.memije.pokemondetail.presentation.viewmodel.PokemonDetailViewModel
 import com.memije.core.components.ErrorState
 import com.memije.core.components.LoadingState
 import com.memije.core.network.model.Response
+import com.memije.core.utils.Routes
 import java.util.Locale
 
 @Composable
@@ -45,7 +46,7 @@ fun PokemonDetail(viewModel: PokemonDetailViewModel, pokemonName: String, navCon
 }
 
 @Composable
-fun DetailContent(pokemon: com.memije.pokemondetail.domain.model.PokemonDetail, navController: NavHostController) {
+fun DetailContent(pokemon: PokemonDetail, navController: NavHostController) {
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Image(
             painter = rememberAsyncImagePainter(pokemon.imageUrl),
@@ -68,7 +69,7 @@ fun DetailContent(pokemon: com.memije.pokemondetail.domain.model.PokemonDetail, 
             Text(
                 text = ability,
                 modifier = Modifier
-                    .clickable { navController.navigate("pokemonAbility/${ability}") }
+                    .clickable { navController.navigate(Routes.AbilityDetail.createRoute(ability)) }
                     .padding(8.dp)
             )
         }
