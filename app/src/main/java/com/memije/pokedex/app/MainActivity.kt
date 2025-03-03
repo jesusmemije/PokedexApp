@@ -9,6 +9,7 @@ import com.memije.pokedex.app.navigation.NavigationGraph
 import com.memije.pokemonability.presentation.viewmodel.PokemonAbilityViewModel
 import com.memije.pokemondetail.presentation.viewmodel.PokemonDetailViewModel
 import com.memije.core.theme.PokedexAppTheme
+import com.memije.pokedex.R
 import com.memije.pokemonlist.presentation.viewmodel.PokemonListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,8 @@ class MainActivity : ComponentActivity() {
     private val abilityViewModel: PokemonAbilityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Change Theme Pokedex ==> Splash
+        setTheme(R.style.Theme_Pokedex)
         super.onCreate(savedInstanceState)
         setContent {
             PokedexAppTheme {

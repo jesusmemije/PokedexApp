@@ -18,7 +18,7 @@
         <activity
             android:name=".app.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Pokedex">
+            android:theme="@style/Theme.Pokedex.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
