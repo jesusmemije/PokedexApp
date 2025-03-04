@@ -1,4 +1,4 @@
-package com.memije.core.utils
+package com.memije.core.utils.routes
 
 sealed class Routes(val route: String) {
     data object Home : Routes("home")

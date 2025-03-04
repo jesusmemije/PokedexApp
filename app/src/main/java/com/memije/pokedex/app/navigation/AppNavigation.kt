@@ -6,8 +6,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.memije.core.utils.Arguments
-import com.memije.core.utils.Routes
+import com.memije.core.utils.routes.Arguments
+import com.memije.core.utils.routes.Routes
 import com.memije.pokedex.screens.DetailScreen
 import com.memije.pokedex.screens.HomeScreen
 import com.memije.pokedex.screens.AbilityScreen

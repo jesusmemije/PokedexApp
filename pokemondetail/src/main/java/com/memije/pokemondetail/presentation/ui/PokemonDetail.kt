@@ -24,7 +24,7 @@ import com.memije.pokemondetail.presentation.viewmodel.PokemonDetailViewModel
 import com.memije.core.components.ErrorState
 import com.memije.core.components.LoadingState
 import com.memije.core.network.model.Response
-import com.memije.core.utils.Routes
+import com.memije.core.utils.routes.Routes
 import java.util.Locale
 
 @Composable

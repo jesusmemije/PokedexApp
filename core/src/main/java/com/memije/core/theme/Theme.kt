@@ -3,13 +3,12 @@ package com.memije.core.theme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 
 private val LightColorScheme = lightColorScheme(
-    primary = RedPokemon,
-    secondary = YellowPokemon,
-    background = GrayBackground,
-    surface = Color.White
+    primary = PrimaryColor,
+    secondary = SecondaryColor,
+    background = BackgroundColor,
+    surface = SurfaceColor
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -26,7 +25,7 @@ private val LightColorScheme = lightColorScheme(
 fun PokedexAppTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         colorScheme = LightColorScheme,
-        typography = Typography,
+        typography = TypographyApp,
         content = content
     )
 }

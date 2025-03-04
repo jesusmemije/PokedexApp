@@ -46,6 +46,10 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation (libs.coil.compose)
 
+    // Compose Preview
+    implementation(libs.androidx.ui.tooling.preview.android)
+    debugImplementation (libs.androidx.ui.tooling)
+
     // Retrofit
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
