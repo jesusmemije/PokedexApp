@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.memije.pokedex"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.memije.pokedex"
@@ -70,6 +70,12 @@ android {
 dependencies {
     implementation(project(":PDXCore"))
     implementation(project(":PDXDesignSystem"))
+
+    // Core App
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.material)
+    implementation(libs.compose.icons)
+    implementation(libs.androidx.compose.material3)
 
     // Dagger Hilt
     implementation(libs.androidx.hilt.navigation.compose)
