@@ -68,11 +68,8 @@ android {
 }
 
 dependencies {
-
-    implementation(project(":core"))
-    implementation(project(":pokemonlist"))
-    implementation(project(":pokemondetail"))
-    implementation(project(":pokemonability"))
+    implementation(project(":PDXCore"))
+    implementation(project(":PDXDesignSystem"))
 
     // Dagger Hilt
     implementation(libs.androidx.hilt.navigation.compose)
@@ -83,6 +80,10 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material3)
     implementation (libs.coil.compose)
+
+    // Compose Preview
+    implementation(libs.androidx.ui.tooling.preview.android)
+    debugImplementation (libs.androidx.ui.tooling)
 }
 
 // Allow references to generated code
