@@ -1,77 +1,215 @@
 package com.memije.pokedex.features.detail.presentation.ui
 
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.memije.pdxcore.network.model.PDXResponseGeneric
+import com.memije.pdxcore.utils.extensions.capitalizeFirstLetter
+import com.memije.pdxcore.utils.extensions.toFormatNumber
 import com.memije.pdxcore.utils.routes.PDXAppRoutes
 import com.memije.pdxdesignsystem.screens.PDXErrorScreen
 import com.memije.pdxdesignsystem.screens.PDXLoadingScreen
-import com.memije.pokedex.features.detail.domain.model.PDXDetail
+import com.memije.pdxdesignsystem.theme.ExtraSmallSpacing
+import com.memije.pdxdesignsystem.theme.Grama
+import com.memije.pdxdesignsystem.theme.LargeCornerRadius
+import com.memije.pdxdesignsystem.theme.MediumIconSize
+import com.memije.pdxdesignsystem.theme.MediumLargeSpacing
+import com.memije.pdxdesignsystem.theme.MediumSpacing
+import com.memije.pdxdesignsystem.theme.SmallSpacing
+import com.memije.pdxdesignsystem.theme.TypographyApp
+import com.memije.pokedex.R
+import com.memije.pokedex.features.detail.domain.model.PDXDetailModel
+import com.memije.pokedex.features.detail.domain.model.PDXSpeciesModel
+import com.memije.pokedex.features.detail.presentation.util.getFlavorTextEs
 import com.memije.pokedex.features.detail.presentation.viewmodel.PDXDetailViewModel
-import java.util.Locale
 
 @Composable
 fun PDXDetailWidget(viewModel: PDXDetailViewModel, pokemonName: String, navController: NavHostController) {
 
-    val pokemonDetail by viewModel.pokemonDetail.collectAsState()
+    val combinedState by viewModel.combinedPokemon.collectAsState()
 
     LaunchedEffect(pokemonName) {
         viewModel.getPokemonDetail(pokemonName)
+        viewModel.getPokemonSpecies(pokemonName)
     }
 
-    when (pokemonDetail) {
+    when (combinedState) {
         is PDXResponseGeneric.Loading -> PDXLoadingScreen()
-        is PDXResponseGeneric.Success -> DetailContent((pokemonDetail as PDXResponseGeneric.Success<PDXDetail>).data, navController)
-        is PDXResponseGeneric.Error -> PDXErrorScreen(message = (pokemonDetail as PDXResponseGeneric.Error).message) {
-            viewModel.getPokemonDetail(pokemonName)
+        is PDXResponseGeneric.Success -> {
+            val data = (combinedState as PDXResponseGeneric.Success<Pair<PDXDetailModel, PDXSpeciesModel>>).data
+            DetailContent(detail = data.first, species = data.second, navController = navController)
+        }
+        is PDXResponseGeneric.Error -> {
+            val message = (combinedState as PDXResponseGeneric.Error).message
+            PDXErrorScreen(message = message) {
+                viewModel.getPokemonDetail(pokemonName)
+                viewModel.getPokemonSpecies(pokemonName)
+            }
         }
     }
 }
 
 @Composable
-fun DetailContent(pokemon: PDXDetail, navController: NavHostController) {
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        Image(
-            painter = rememberAsyncImagePainter(pokemon.imageUrl),
-            contentDescription = pokemon.name,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.size(150.dp).align(androidx.compose.ui.Alignment.CenterHorizontally)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "ID: ${pokemon.id}", style = MaterialTheme.typography.bodyLarge)
-        Text(text = "Nombre: ${pokemon.name.replaceFirstChar {
-            if (it.isLowerCase()) it.titlecase(
-                Locale.ROOT
-            ) else it.toString()
-        }}", style = MaterialTheme.typography.headlineSmall)
-        Text(text = "Altura: ${pokemon.height}", style = MaterialTheme.typography.bodyMedium)
-        Text(text = "Peso: ${pokemon.weight}", style = MaterialTheme.typography.bodyMedium)
-        Text(text = "Tipos: ${pokemon.types.joinToString(", ")}", style = MaterialTheme.typography.bodyMedium)
-        // Lista de habilidades del Pokémon
-        pokemon.abilities.forEach { ability ->
-            Text(
-                text = ability,
+fun DetailContent(detail: PDXDetailModel, species: PDXSpeciesModel, navController: NavHostController) {
+
+    val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            // Background Green
+            Image(
+                painter = painterResource(id = R.drawable.pdx_shape_ropunded_bottom_green),
+                contentDescription = null,
                 modifier = Modifier
-                    .clickable { navController.navigate(PDXAppRoutes.Ability.createRoute(ability)) }
-                    .padding(8.dp)
+                    .fillMaxWidth(),
+                contentScale = ContentScale.FillWidth
+            )
+
+            // Background Sheet
+            Image(
+                painter = painterResource(id = R.drawable.pdx_icon_sheet_white),
+                contentDescription = null,
+                modifier = Modifier
+                    .align(Alignment.Center)
+            )
+
+            // Top icons (Back y Favorite)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = MediumSpacing, vertical = MediumLargeSpacing)
+                    .align(Alignment.TopCenter),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                IconButton(onClick = { backDispatcher?.onBackPressed() }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.pdx_icon_arrow_back),
+                        contentDescription = null,
+                        modifier = Modifier.size(MediumIconSize),
+                        tint = Color.White
+                    )
+                }
+
+                IconButton(onClick = {  }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.pdx_icon_favorite),
+                        contentDescription = "Favorito",
+                        modifier = Modifier.size(MediumIconSize),
+                        tint = Color.White
+                    )
+                }
+            }
+
+            // Imagen Pokemón
+            Image(
+                painter = rememberAsyncImagePainter(detail.imageUrl),
+                contentDescription = detail.name,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(280.dp)
+                    .align(Alignment.BottomCenter)
+                    .offset(y = 80.dp)
             )
         }
+
+        Spacer(modifier = Modifier.height(MediumSpacing))
+
+        Column(modifier = Modifier.padding(MediumSpacing)) {
+            Text(
+                text = detail.name.capitalizeFirstLetter(),
+                style = TypographyApp.headlineLarge
+            )
+
+            Text(
+                text = detail.id.toFormatNumber(),
+                style = TypographyApp.bodyLarge,
+                modifier = Modifier.padding(top = ExtraSmallSpacing)
+            )
+
+            Text(
+                text = species.flavorTextEntries.getFlavorTextEs().orEmpty(),
+                style = TypographyApp.bodyLarge,
+                modifier = Modifier.padding(top = MediumSpacing)
+            )
+
+            Spacer(modifier = Modifier.padding(top = MediumSpacing))
+
+            Row {
+                detail.types.map {
+                    LabelComponent(it.capitalizeFirstLetter())
+                    Spacer(Modifier.width(MediumSpacing))
+                }
+            }
+
+            Spacer(modifier = Modifier.padding(top = MediumSpacing))
+
+            Text(text = "Altura: ${detail.height}", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Peso: ${detail.weight}", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Tipos: ${detail.types.joinToString(", ")}", style = MaterialTheme.typography.bodyMedium)
+            // Lista de habilidades del Pokémon
+            detail.abilities.forEach { ability ->
+                Text(
+                    text = ability,
+                    modifier = Modifier
+                        .clickable { navController.navigate(PDXAppRoutes.Ability.createRoute(ability)) }
+                        .padding(SmallSpacing)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun LabelComponent(title: String) {
+    Row(
+        modifier = Modifier
+            .background(Grama, shape = RoundedCornerShape(LargeCornerRadius))
+            .padding(vertical = SmallSpacing, horizontal = MediumSpacing),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.pdx_icon_sheet_green),
+            contentDescription = title,
+            modifier = Modifier.size(MediumIconSize)
+        )
+        Spacer(Modifier.width(SmallSpacing))
+        Text(text = title, style = TypographyApp.titleSmall)
     }
 }

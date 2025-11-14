@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import com.memije.pdxdesignsystem.theme.SmallSpacing
 
 @Composable
 fun PDXLoadingScreen() {
@@ -21,7 +21,7 @@ fun PDXLoadingScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(SmallSpacing))
         Text(text = "Cargando...", style = MaterialTheme.typography.bodyLarge)
     }
 }

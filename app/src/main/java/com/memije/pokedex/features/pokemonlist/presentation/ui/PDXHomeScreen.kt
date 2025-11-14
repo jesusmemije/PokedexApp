@@ -7,10 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.memije.pdxdesignsystem.theme.TypographyApp
 import com.memije.pdxdesignsystem.R
+import com.memije.pdxdesignsystem.theme.MediumSpacing
+import com.memije.pdxdesignsystem.theme.TypographyApp
 import com.memije.pokedex.features.pokemonlist.presentation.viewmodel.PDXPokemonListViewModel
 
 @Composable
@@ -18,7 +18,7 @@ fun PDXHomeScreen(pokemonViewModel: PDXPokemonListViewModel, navController: NavH
     Column {
         Text(
             text = stringResource(R.string.app_name),
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp),
+            modifier = Modifier.padding(start = MediumSpacing, top = MediumSpacing),
             style = TypographyApp.displayMedium.copy(fontWeight = FontWeight.Bold)
         )
         PDXPokemonListWidget(pokemonViewModel, navController)

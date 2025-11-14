@@ -1,6 +1,6 @@
 package com.memije.pokedex.features.detail.domain.model
 
-data class PDXDetail(
+data class PDXDetailModel(
     val id: Int,
     val name: String,
     val imageUrl: String,

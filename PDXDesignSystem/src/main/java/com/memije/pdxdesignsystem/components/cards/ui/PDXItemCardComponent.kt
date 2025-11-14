@@ -31,6 +31,8 @@ import com.memije.pdxcore.utils.extensions.toFormatNumber
 import com.memije.pdxdesignsystem.components.cards.model.PDXItemPokemonModel
 import com.memije.pdxdesignsystem.theme.GreenLight
 import com.memije.pdxdesignsystem.theme.GreenMedium
+import com.memije.pdxdesignsystem.theme.LargeCornerRadius
+import com.memije.pdxdesignsystem.theme.MediumSpacing
 import com.memije.pdxdesignsystem.theme.TypographyApp
 
 @Composable
@@ -43,7 +45,7 @@ fun PDXItemCardComponent(
             .height(120.dp)
             .clickable { clickItem.invoke() },
         elevation = CardDefaults.cardElevation(0.dp),
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(LargeCornerRadius)
     ) {
         Row(
             modifier = Modifier
@@ -53,7 +55,7 @@ fun PDXItemCardComponent(
             Box(
                 modifier = Modifier
                     .weight(0.6f)
-                    .padding(16.dp)
+                    .padding(MediumSpacing)
             ) {
                 Column {
                     Text(
@@ -69,7 +71,7 @@ fun PDXItemCardComponent(
 
             Box(modifier = Modifier.weight(0.4f)) {
                 Card(
-                    shape = RoundedCornerShape(16.dp), colors = CardDefaults.cardColors(
+                    shape = RoundedCornerShape(LargeCornerRadius), colors = CardDefaults.cardColors(
                         containerColor = containerColor
                     )
                 ) {

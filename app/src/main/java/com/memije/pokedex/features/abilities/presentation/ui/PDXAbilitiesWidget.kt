@@ -33,12 +33,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.memije.pdxcore.network.model.PDXResponseGeneric
 import com.memije.pdxdesignsystem.screens.PDXErrorScreen
 import com.memije.pdxdesignsystem.screens.PDXLoadingScreen
+import com.memije.pdxdesignsystem.theme.LargeCornerRadius
+import com.memije.pdxdesignsystem.theme.LargeSmallSpacing
+import com.memije.pdxdesignsystem.theme.MediumSpacing
+import com.memije.pdxdesignsystem.theme.SmallSpacing
 import com.memije.pokedex.features.abilities.domain.model.PDXAbility
 import com.memije.pokedex.features.abilities.presentation.viewmodel.PDXAbilityViewModel
 
@@ -101,14 +104,14 @@ fun PDXAbilitiesWidget(
 fun AbilityContent(ability: PDXAbility) {
     Card(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(MediumSpacing)
             .fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(LargeCornerRadius),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = LargeSmallSpacing)
     ) {
         Column(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(MediumSpacing),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
@@ -116,7 +119,7 @@ fun AbilityContent(ability: PDXAbility) {
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.primary
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(SmallSpacing))
             Text(
                 text = ability.effect,
                 textAlign = TextAlign.Center,

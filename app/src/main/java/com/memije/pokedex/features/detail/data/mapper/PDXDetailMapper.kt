@@ -1,10 +1,10 @@
 package com.memije.pokedex.features.detail.data.mapper
 
 import com.memije.pdxcore.network.response.PDXDetailResponse
-import com.memije.pokedex.features.detail.domain.model.PDXDetail
+import com.memije.pokedex.features.detail.domain.model.PDXDetailModel
 
-fun PDXDetailResponse.toDomain(): PDXDetail {
-    return PDXDetail(
+fun PDXDetailResponse.toDomain(): PDXDetailModel {
+    return PDXDetailModel(
         id = id,
         name = name,
         imageUrl = sprites.frontImage,
