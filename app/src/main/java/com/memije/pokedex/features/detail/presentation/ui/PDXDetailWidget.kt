@@ -2,7 +2,6 @@ package com.memije.pokedex.features.detail.presentation.ui
 
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -30,26 +28,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.memije.pdxcore.network.model.PDXResponseGeneric
-import com.memije.pdxcore.utils.extensions.capitalizeFirstLetter
-import com.memije.pdxcore.utils.extensions.toFormatNumber
 import com.memije.pdxcore.utils.routes.PDXAppRoutes
+import com.memije.pdxdesignsystem.R
+import com.memije.pdxdesignsystem.components.PDXInfoCardComponent
 import com.memije.pdxdesignsystem.screens.PDXErrorScreen
 import com.memije.pdxdesignsystem.screens.PDXLoadingScreen
 import com.memije.pdxdesignsystem.theme.ExtraSmallSpacing
-import com.memije.pdxdesignsystem.theme.Grama
-import com.memije.pdxdesignsystem.theme.LargeCornerRadius
 import com.memije.pdxdesignsystem.theme.MediumIconSize
 import com.memije.pdxdesignsystem.theme.MediumLargeSpacing
 import com.memije.pdxdesignsystem.theme.MediumSpacing
 import com.memije.pdxdesignsystem.theme.SmallSpacing
 import com.memije.pdxdesignsystem.theme.TypographyApp
-import com.memije.pokedex.R
-import com.memije.pokedex.features.detail.domain.model.PDXDetailModel
-import com.memije.pokedex.features.detail.domain.model.PDXSpeciesModel
+import com.memije.pokedex.features.detail.domain.model.PDXSpeciesDomainModel
+import com.memije.pokedex.features.detail.presentation.model.PDXDetailUIModel
 import com.memije.pokedex.features.detail.presentation.util.getFlavorTextEs
 import com.memije.pokedex.features.detail.presentation.viewmodel.PDXDetailViewModel
 
@@ -66,7 +62,7 @@ fun PDXDetailWidget(viewModel: PDXDetailViewModel, pokemonName: String, navContr
     when (combinedState) {
         is PDXResponseGeneric.Loading -> PDXLoadingScreen()
         is PDXResponseGeneric.Success -> {
-            val data = (combinedState as PDXResponseGeneric.Success<Pair<PDXDetailModel, PDXSpeciesModel>>).data
+            val data = (combinedState as PDXResponseGeneric.Success<Pair<PDXDetailUIModel, PDXSpeciesDomainModel>>).data
             DetailContent(detail = data.first, species = data.second, navController = navController)
         }
         is PDXResponseGeneric.Error -> {
@@ -80,31 +76,28 @@ fun PDXDetailWidget(viewModel: PDXDetailViewModel, pokemonName: String, navContr
 }
 
 @Composable
-fun DetailContent(detail: PDXDetailModel, species: PDXSpeciesModel, navController: NavHostController) {
+fun DetailContent(detail: PDXDetailUIModel, species: PDXSpeciesDomainModel, navController: NavHostController) {
 
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
     Column(modifier = Modifier.fillMaxSize()) {
         Box(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.TopCenter
         ) {
             // Background Green
             Image(
-                painter = painterResource(id = R.drawable.pdx_shape_ropunded_bottom_green),
+                painter = painterResource(id = detail.pokemonDetailUI.backgroundImageRes),
                 contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 contentScale = ContentScale.FillWidth
             )
 
             // Background Sheet
             Image(
-                painter = painterResource(id = R.drawable.pdx_icon_sheet_white),
+                painter = painterResource(id = detail.pokemonDetailUI.iconImageRes),
                 contentDescription = null,
-                modifier = Modifier
-                    .align(Alignment.Center)
+                modifier = Modifier.align(Alignment.Center)
             )
 
             // Top icons (Back y Favorite)
@@ -152,36 +145,45 @@ fun DetailContent(detail: PDXDetailModel, species: PDXSpeciesModel, navControlle
 
         Column(modifier = Modifier.padding(MediumSpacing)) {
             Text(
-                text = detail.name.capitalizeFirstLetter(),
+                text = detail.name,
                 style = TypographyApp.headlineLarge
             )
 
             Text(
-                text = detail.id.toFormatNumber(),
+                text = detail.numberFormat,
                 style = TypographyApp.bodyLarge,
                 modifier = Modifier.padding(top = ExtraSmallSpacing)
-            )
-
-            Text(
-                text = species.flavorTextEntries.getFlavorTextEs().orEmpty(),
-                style = TypographyApp.bodyLarge,
-                modifier = Modifier.padding(top = MediumSpacing)
             )
 
             Spacer(modifier = Modifier.padding(top = MediumSpacing))
 
             Row {
-                detail.types.map {
-                    LabelComponent(it.capitalizeFirstLetter())
-                    Spacer(Modifier.width(MediumSpacing))
+                detail.types.forEach { type ->
+                    PDXInfoCardComponent(
+                        icon = painterResource(id = type.iconRes),
+                        label = type.name,
+                        backgroundColor = type.color
+                    )
+                    Spacer(Modifier.width(SmallSpacing))
                 }
             }
+
+            Text(
+                text = species.flavorTextEntries
+                    .getFlavorTextEs()
+                    ?.replace("\\s+".toRegex(), " ")
+                    ?.trim()
+                    .orEmpty(),
+                style = TypographyApp.bodyLarge,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier.padding(top = MediumSpacing)
+            )
 
             Spacer(modifier = Modifier.padding(top = MediumSpacing))
 
             Text(text = "Altura: ${detail.height}", style = MaterialTheme.typography.bodyMedium)
             Text(text = "Peso: ${detail.weight}", style = MaterialTheme.typography.bodyMedium)
-            Text(text = "Tipos: ${detail.types.joinToString(", ")}", style = MaterialTheme.typography.bodyMedium)
+
             // Lista de habilidades del Pokémon
             detail.abilities.forEach { ability ->
                 Text(
@@ -192,24 +194,5 @@ fun DetailContent(detail: PDXDetailModel, species: PDXSpeciesModel, navControlle
                 )
             }
         }
-    }
-}
-
-@Composable
-fun LabelComponent(title: String) {
-    Row(
-        modifier = Modifier
-            .background(Grama, shape = RoundedCornerShape(LargeCornerRadius))
-            .padding(vertical = SmallSpacing, horizontal = MediumSpacing),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.pdx_icon_sheet_green),
-            contentDescription = title,
-            modifier = Modifier.size(MediumIconSize)
-        )
-        Spacer(Modifier.width(SmallSpacing))
-        Text(text = title, style = TypographyApp.titleSmall)
     }
 }

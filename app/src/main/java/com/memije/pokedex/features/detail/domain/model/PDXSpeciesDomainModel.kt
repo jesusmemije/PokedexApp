@@ -1,6 +1,6 @@
 package com.memije.pokedex.features.detail.domain.model
 
-data class PDXSpeciesModel(
+data class PDXSpeciesDomainModel(
     val flavorTextEntries: List<FlavorList>
 )
 

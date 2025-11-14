@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.memije.pdxcore.utils.routes.PDXAppRoutes
 import com.memije.pdxdesignsystem.R
-import com.memije.pdxdesignsystem.components.cards.ui.PDXItemCardComponent
+import com.memije.pdxdesignsystem.components.itemcard.ui.PDXItemCardComponent
 import com.memije.pdxdesignsystem.theme.GreenMedium
 import com.memije.pdxdesignsystem.theme.MediumSpacing
 import com.memije.pdxdesignsystem.theme.PokedexAppTheme
@@ -32,7 +32,7 @@ fun PDXPokemonList(pokemonList: List<PDXPokemon>, navController: NavController) 
         items(pokemonList) { pokemon ->
             PDXItemCardComponent(
                 containerColor = GreenMedium,
-                backgroundImage = R.drawable.background_grass,
+                backgroundImage = R.drawable.icon_grass,
                 pokemon = pokemon.toPokemon()
             ) { navController.navigate(PDXAppRoutes.Details.createRoute(pokemon.name)) }
         }

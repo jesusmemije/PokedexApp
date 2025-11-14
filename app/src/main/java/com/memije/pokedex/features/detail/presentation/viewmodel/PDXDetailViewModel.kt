@@ -3,10 +3,11 @@ package com.memije.pokedex.features.detail.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.memije.pdxcore.network.model.PDXResponseGeneric
-import com.memije.pokedex.features.detail.domain.model.PDXDetailModel
-import com.memije.pokedex.features.detail.domain.model.PDXSpeciesModel
+import com.memije.pokedex.features.detail.domain.model.PDXSpeciesDomainModel
 import com.memije.pokedex.features.detail.domain.usecase.PDXGetPokemonDetailUseCase
 import com.memije.pokedex.features.detail.domain.usecase.PDXGetPokemonSpeciesUseCase
+import com.memije.pokedex.features.detail.presentation.model.PDXDetailUIModel
+import com.memije.pokedex.features.detail.presentation.model.toUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -22,13 +23,13 @@ class PDXDetailViewModel @Inject constructor(
     private val getPokemonSpeciesUseCase: PDXGetPokemonSpeciesUseCase
 ) : ViewModel() {
 
-    private val _pokemonDetail = MutableStateFlow<PDXResponseGeneric<PDXDetailModel>>(PDXResponseGeneric.Loading)
-    val pokemonDetail: StateFlow<PDXResponseGeneric<PDXDetailModel>> = _pokemonDetail
+    private val _pokemonDetail = MutableStateFlow<PDXResponseGeneric<PDXDetailUIModel>>(PDXResponseGeneric.Loading)
+    val pokemonDetail: StateFlow<PDXResponseGeneric<PDXDetailUIModel>> = _pokemonDetail
 
-    private val _pokemonSpecies = MutableStateFlow<PDXResponseGeneric<PDXSpeciesModel>>(PDXResponseGeneric.Loading)
-    val pokemonSpecies: StateFlow<PDXResponseGeneric<PDXSpeciesModel>> = _pokemonSpecies
+    private val _pokemonSpecies = MutableStateFlow<PDXResponseGeneric<PDXSpeciesDomainModel>>(PDXResponseGeneric.Loading)
+    val pokemonSpecies: StateFlow<PDXResponseGeneric<PDXSpeciesDomainModel>> = _pokemonSpecies
 
-    val combinedPokemon: StateFlow<PDXResponseGeneric<Pair<PDXDetailModel, PDXSpeciesModel>>> =
+    val combinedPokemon: StateFlow<PDXResponseGeneric<Pair<PDXDetailUIModel, PDXSpeciesDomainModel>>> =
         combine(pokemonDetail, pokemonSpecies) { detailState, speciesState ->
             when {
                 detailState is PDXResponseGeneric.Loading || speciesState is PDXResponseGeneric.Loading -> PDXResponseGeneric.Loading
@@ -43,7 +44,14 @@ class PDXDetailViewModel @Inject constructor(
 
     fun getPokemonDetail(name: String) {
         viewModelScope.launch {
-            _pokemonDetail.value = getPokemonDetailUseCase(name)
+            _pokemonDetail.value = when (val result = getPokemonDetailUseCase(name)) {
+                is PDXResponseGeneric.Success -> {
+                    PDXResponseGeneric.Success(result.data.toUI())
+                }
+
+                is PDXResponseGeneric.Error -> PDXResponseGeneric.Error(result.message)
+                is PDXResponseGeneric.Loading -> PDXResponseGeneric.Loading
+            }
         }
     }
 

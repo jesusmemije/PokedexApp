@@ -1,4 +1,4 @@
-package com.memije.pdxdesignsystem.components.cards.ui
+package com.memije.pdxdesignsystem.components.itemcard.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,19 +18,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.memije.pdxcore.utils.extensions.capitalizeFirstLetter
-import com.memije.pdxcore.utils.extensions.toFormatNumber
-import com.memije.pdxdesignsystem.components.cards.model.PDXItemPokemonModel
+import com.memije.pdxdesignsystem.components.itemcard.model.PDXItemPokemonModel
 import com.memije.pdxdesignsystem.theme.GreenLight
-import com.memije.pdxdesignsystem.theme.GreenMedium
 import com.memije.pdxdesignsystem.theme.LargeCornerRadius
 import com.memije.pdxdesignsystem.theme.MediumSpacing
 import com.memije.pdxdesignsystem.theme.TypographyApp
@@ -59,11 +54,11 @@ fun PDXItemCardComponent(
             ) {
                 Column {
                     Text(
-                        text = pokemon.id.toFormatNumber(),
+                        text = pokemon.numberFormat,
                         style = TypographyApp.bodyLarge.copy(fontWeight = FontWeight.Medium)
                     )
                     Text(
-                        text = pokemon.name.capitalizeFirstLetter(),
+                        text = pokemon.name,
                         style = TypographyApp.titleLarge.copy(fontWeight = FontWeight.Bold)
                     )
                 }
@@ -78,23 +73,14 @@ fun PDXItemCardComponent(
                     Box(
                         modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
                     ) {
-                        Image(painter = painterResource(backgroundImage),
-                            contentDescription = "Background Image",
-                            modifier = Modifier
-                                .size(100.dp)
-                                .drawWithContent {
-                                    drawContent()
-                                    drawRect(
-                                        brush = Brush.verticalGradient(
-                                            colors = listOf(
-                                                Color.Transparent, GreenMedium.copy(alpha = 0.7f)
-                                            ), startY = 0f, endY = size.height * 0.8f
-                                        )
-                                    )
-                                })
+                        Image(
+                            painter = painterResource(backgroundImage),
+                            contentDescription = null,
+                            modifier = Modifier.size(100.dp)
+                        )
                         Image(
                             painter = rememberAsyncImagePainter(pokemon.imageUrl),
-                            contentDescription = "Pokemon",
+                            contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.size(100.dp)
                         )
