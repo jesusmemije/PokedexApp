@@ -1,7 +1,8 @@
 package com.memije.pokedex.features.pokemonlist.domain.model
 
-data class PDXPokemon(
+data class PDXPokemonDomainModel(
     val id: Int,
     val name: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val types: List<String>
 )

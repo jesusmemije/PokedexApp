@@ -14,8 +14,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import com.memije.pdxdesignsystem.theme.ExtraSmallSpacing
 import com.memije.pdxdesignsystem.theme.LargeCornerRadius
-import com.memije.pdxdesignsystem.theme.LargeSpacing
+import com.memije.pdxdesignsystem.theme.MediumLargeSpacing
 import com.memije.pdxdesignsystem.theme.SmallSpacing
 import com.memije.pdxdesignsystem.theme.TypographyApp
 
@@ -28,18 +31,23 @@ fun PDXInfoCardComponent(
     Box(
         modifier = Modifier
             .background(backgroundColor, shape = RoundedCornerShape(LargeCornerRadius))
-            .padding(vertical = SmallSpacing, horizontal = LargeSpacing)
+            .padding(vertical = ExtraSmallSpacing, horizontal = SmallSpacing)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(SmallSpacing)
+            horizontalArrangement = Arrangement.spacedBy(ExtraSmallSpacing)
         ) {
             Image(
                 painter = icon,
-                contentDescription = null,
-                modifier = Modifier.size(LargeSpacing)
+                contentDescription = "Pokemon type $label",
+                modifier = Modifier.size(MediumLargeSpacing)
             )
-            Text(text = label, style = TypographyApp.titleSmall)
+            Text(
+                text = label,
+                style = TypographyApp.bodyMedium.copy(fontWeight = FontWeight.Medium),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
         }
     }
 }
