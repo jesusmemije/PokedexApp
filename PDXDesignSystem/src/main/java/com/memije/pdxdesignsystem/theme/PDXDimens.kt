@@ -35,3 +35,8 @@ val HugeText = 24.sp
 val SmallCornerRadius = 4.dp
 val MediumCornerRadius = 8.dp
 val LargeCornerRadius = 16.dp
+
+// Tamaños de Componentes
+val ZeroElevation = 0.dp
+val ItemCardHeight = 120.dp
+val ItemCardImageSize = 100.dp
