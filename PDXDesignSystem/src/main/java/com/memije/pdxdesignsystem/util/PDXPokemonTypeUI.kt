@@ -1,5 +1,6 @@
-package com.memije.pokedex.features.detail.presentation.util
+package com.memije.pdxdesignsystem.util
 
+import androidx.compose.ui.graphics.Color
 import com.memije.pdxdesignsystem.R
 import com.memije.pdxdesignsystem.theme.BugColor
 import com.memije.pdxdesignsystem.theme.DarkColor
@@ -19,7 +20,12 @@ import com.memije.pdxdesignsystem.theme.PsychicColor
 import com.memije.pdxdesignsystem.theme.RockColor
 import com.memije.pdxdesignsystem.theme.SteelColor
 import com.memije.pdxdesignsystem.theme.WaterColor
-import com.memije.pokedex.features.detail.presentation.model.PokemonTypeUI
+
+data class PokemonTypeUI(
+    val name: String,
+    val color: Color,
+    val iconRes: Int
+)
 
 val pokemonTypeUIMap = mapOf(
     "normal" to PokemonTypeUI(

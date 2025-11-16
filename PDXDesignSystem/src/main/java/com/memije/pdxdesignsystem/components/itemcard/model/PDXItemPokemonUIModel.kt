@@ -1,6 +1,7 @@
 package com.memije.pdxdesignsystem.components.itemcard.model
 
 import androidx.compose.ui.graphics.Color
+import com.memije.pdxdesignsystem.util.PokemonTypeUI
 
 data class PDXItemPokemonUIModel(
     val id: Int,
@@ -11,10 +12,4 @@ data class PDXItemPokemonUIModel(
     val backgroundPokemon: Color,
     val imagenPokemon: Int,
     val types: List<PokemonTypeUI>,
-)
-
-data class PokemonTypeUI(
-    val name: String,
-    val color: Color,
-    val iconRes: Int
 )
