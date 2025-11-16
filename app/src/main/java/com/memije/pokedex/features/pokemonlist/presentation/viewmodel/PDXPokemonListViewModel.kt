@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.memije.pdxcore.network.model.PDXResponseGeneric
 import com.memije.pokedex.features.pokemonlist.domain.usecase.PDXGetPokemonListUseCase
+import com.memije.pokedex.features.pokemonlist.presentation.mapper.toUI
 import com.memije.pokedex.features.pokemonlist.presentation.model.PDXPokemonUIModel
-import com.memije.pokedex.features.pokemonlist.presentation.model.toUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

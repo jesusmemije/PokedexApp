@@ -1,6 +1,5 @@
 package com.memije.pokedex.features.pokemonlist.presentation.util
 
-import androidx.compose.ui.graphics.Color
 import com.memije.pdxdesignsystem.R
 import com.memije.pdxdesignsystem.theme.BugColor
 import com.memije.pdxdesignsystem.theme.BugLightColor
@@ -38,13 +37,7 @@ import com.memije.pdxdesignsystem.theme.SteelColor
 import com.memije.pdxdesignsystem.theme.SteelLightColor
 import com.memije.pdxdesignsystem.theme.WaterColor
 import com.memije.pdxdesignsystem.theme.WaterLightColor
-
-data class PokemonListUI(
-    val name: String,
-    val backgroundCard: Color,
-    val backgroundPokemon: Color,
-    val imagenPokemonRes: Int
-)
+import com.memije.pokedex.features.pokemonlist.presentation.model.PokemonListUI
 
 val pokemonListUIMap = mapOf(
     "normal" to PokemonListUI(

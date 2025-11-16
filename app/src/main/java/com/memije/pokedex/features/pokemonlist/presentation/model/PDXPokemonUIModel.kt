@@ -1,7 +1,6 @@
 package com.memije.pokedex.features.pokemonlist.presentation.model
 
-import com.memije.pdxcore.utils.extensions.capitalizeFirstLetter
-import com.memije.pokedex.features.pokemonlist.domain.model.PDXPokemonDomainModel
+import androidx.compose.ui.graphics.Color
 
 data class PDXPokemonUIModel(
     val id: Int,
@@ -10,13 +9,9 @@ data class PDXPokemonUIModel(
     val types: List<String>
 )
 
-fun List<PDXPokemonDomainModel>.toUI(): List<PDXPokemonUIModel> {
-    return this.map { pokemon ->
-        PDXPokemonUIModel(
-            id = pokemon.id,
-            name = pokemon.name.capitalizeFirstLetter(),
-            imageUrl = pokemon.imageUrl,
-            types = pokemon.types
-        )
-    }
-}
+data class PokemonListUI(
+    val name: String,
+    val backgroundCard: Color,
+    val backgroundPokemon: Color,
+    val imagenPokemonRes: Int
+)

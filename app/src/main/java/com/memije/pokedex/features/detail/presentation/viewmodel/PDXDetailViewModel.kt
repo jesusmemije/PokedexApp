@@ -6,8 +6,8 @@ import com.memije.pdxcore.network.model.PDXResponseGeneric
 import com.memije.pokedex.features.detail.domain.model.PDXSpeciesDomainModel
 import com.memije.pokedex.features.detail.domain.usecase.PDXGetPokemonDetailUseCase
 import com.memije.pokedex.features.detail.domain.usecase.PDXGetPokemonSpeciesUseCase
+import com.memije.pokedex.features.detail.presentation.mapper.toUI
 import com.memije.pokedex.features.detail.presentation.model.PDXDetailUIModel
-import com.memije.pokedex.features.detail.presentation.model.toUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
